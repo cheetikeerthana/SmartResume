@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | SmartResume</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="dashboard.html">
+            SmartResume
+        </a>
+
+        <div class="d-flex align-items-center gap-3">
+
+            <span id="welcomeName" class="text-muted">
+                Welcome
+            </span>
+
+            <a href="profile.html"
+               class="btn btn-outline-secondary btn-sm">
+                Profile
+            </a>
+
+            <a href="logout"
+               class="btn btn-outline-danger btn-sm">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<main class="container py-5">
+
+    <!-- Welcome -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            Welcome back, <span id="userName">User</span>!
+        </h1>
+
+        <p class="text-muted">
+            Create, manage and improve your professional resumes.
+        </p>
+
+    </div>
+
+
+    <!-- Main Actions -->
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+
+            <div class="card h-100 shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <div class="mb-3">
+                        <i class="bi bi-file-earmark-plus fs-1 text-primary"></i>
+                    </div>
+
+                    <h4>Create Resume</h4>
+
+                    <p class="text-muted">
+                        Start building a professional resume
+                        using our templates.
+                    </p>
+
+                    <a href="create-resume.html"
+                       class="btn btn-primary">
+                        Create New Resume
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card h-100 shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <div class="mb-3">
+                        <i class="bi bi-robot fs-1 text-success"></i>
+                    </div>
+
+                    <h4>Resume Analyzer</h4>
+
+                    <p class="text-muted">
+                        Analyze your resume and receive
+                        AI-powered improvement suggestions.
+                    </p>
+
+                    <button class="btn btn-success"
+                            disabled>
+                        Analyze Resume
+                    </button>
+
+                    <small class="d-block text-muted mt-2">
+                        AI feature coming soon
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card h-100 shadow-sm border-0">
+
+                <div class="card-body p-4">
+
+                    <div class="mb-3">
+                        <i class="bi bi-search fs-1 text-warning"></i>
+                    </div>
+
+                    <h4>Job Matching</h4>
+
+                    <p class="text-muted">
+                        Compare your resume with a job
+                        description and identify skill gaps.
+                    </p>
+
+                    <button class="btn btn-warning"
+                            disabled>
+                        Match With Job
+                    </button>
+
+                    <small class="d-block text-muted mt-2">
+                        AI feature coming soon
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- My Resumes -->
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between
+                        align-items-center mb-4">
+
+                <div>
+                    <h3 class="mb-1">
+                        My Resumes
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Manage your saved resumes.
+                    </p>
+                </div>
+
+                <a href="create-resume.html"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-plus-lg"></i>
+                    New Resume
+
+                </a>
+
+            </div>
+
+
+            <div id="resumeList">
+
+                <div class="text-center py-5">
+
+                    <i class="bi bi-file-earmark-text
+                              fs-1 text-muted"></i>
+
+                    <h5 class="mt-3">
+                        No resumes yet
+                    </h5>
+
+                    <p class="text-muted">
+                        Create your first professional resume.
+                    </p>
+
+                    <a href="create-resume.html"
+                       class="btn btn-primary">
+                        Create Resume
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    /*
+     * The logged-in user's name will eventually
+     * be loaded from the session through a servlet/API.
+     *
+     * For now this placeholder allows us to build
+     * the dashboard UI first.
+     */
+
+    const userNameElement =
+        document.getElementById("userName");
+
+    const welcomeNameElement =
+        document.getElementById("welcomeName");
+
+    const storedName =
+        sessionStorage.getItem("userName");
+
+    if (storedName) {
+
+        userNameElement.textContent = storedName;
+        welcomeNameElement.textContent =
+            "Welcome, " + storedName;
+
+    }
+
+</script>
+
+</body>
+
+</html>

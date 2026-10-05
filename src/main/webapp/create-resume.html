@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Resume | SmartResume</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold"
+           href="dashboard.html">
+            SmartResume
+        </a>
+
+        <a href="dashboard.html"
+           class="btn btn-outline-secondary btn-sm">
+
+            <i class="bi bi-arrow-left"></i>
+            Dashboard
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="text-center mb-5">
+
+                <h1 class="fw-bold">
+                    Create Your Resume
+                </h1>
+
+                <p class="text-muted">
+                    Start with a name and choose a professional template.
+                </p>
+
+            </div>
+
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <form action="create-resume"
+                          method="post">
+
+                        <!-- Resume Name -->
+
+                        <div class="mb-4">
+
+                            <label for="resumeName"
+                                   class="form-label fw-semibold">
+
+                                Resume Name
+
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control form-control-lg"
+                                id="resumeName"
+                                name="resumeName"
+                                placeholder="e.g. Software Developer Resume"
+                                required>
+
+                            <div class="form-text">
+                                Give your resume a name so you can
+                                easily identify it later.
+                            </div>
+
+                        </div>
+
+
+                        <!-- Templates -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Choose Template
+                            </label>
+
+                            <div class="row g-3">
+
+                                <!-- Modern -->
+
+                                <div class="col-md-6">
+
+                                    <input
+                                        type="radio"
+                                        class="btn-check"
+                                        name="templateName"
+                                        id="modern"
+                                        value="modern"
+                                        checked>
+
+                                    <label
+                                        class="template-card"
+                                        for="modern">
+
+                                        <div class="template-preview modern-preview">
+
+                                            <div class="preview-title">
+                                                YOUR NAME
+                                            </div>
+
+                                            <div class="preview-line"></div>
+
+                                            <div class="preview-block"></div>
+                                            <div class="preview-block short"></div>
+
+                                        </div>
+
+                                        <div class="mt-3">
+
+                                            <h5 class="mb-1">
+                                                Modern
+                                            </h5>
+
+                                            <small class="text-muted">
+                                                Clean and contemporary
+                                            </small>
+
+                                        </div>
+
+                                    </label>
+
+                                </div>
+
+
+                                <!-- Professional -->
+
+                                <div class="col-md-6">
+
+                                    <input
+                                        type="radio"
+                                        class="btn-check"
+                                        name="templateName"
+                                        id="professional"
+                                        value="professional">
+
+                                    <label
+                                        class="template-card"
+                                        for="professional">
+
+                                        <div class="template-preview professional-preview">
+
+                                            <div class="preview-title">
+                                                YOUR NAME
+                                            </div>
+
+                                            <div class="preview-line"></div>
+
+                                            <div class="preview-block"></div>
+                                            <div class="preview-block short"></div>
+
+                                        </div>
+
+                                        <div class="mt-3">
+
+                                            <h5 class="mb-1">
+                                                Professional
+                                            </h5>
+
+                                            <small class="text-muted">
+                                                Traditional and polished
+                                            </small>
+
+                                        </div>
+
+                                    </label>
+
+                                </div>
+
+
+                                <!-- Minimal -->
+
+                                <div class="col-md-6">
+
+                                    <input
+                                        type="radio"
+                                        class="btn-check"
+                                        name="templateName"
+                                        id="minimal"
+                                        value="minimal">
+
+                                    <label
+                                        class="template-card"
+                                        for="minimal">
+
+                                        <div class="template-preview minimal-preview">
+
+                                            <div class="preview-title">
+                                                YOUR NAME
+                                            </div>
+
+                                            <div class="preview-line"></div>
+
+                                            <div class="preview-block"></div>
+                                            <div class="preview-block short"></div>
+
+                                        </div>
+
+                                        <div class="mt-3">
+
+                                            <h5 class="mb-1">
+                                                Minimal
+                                            </h5>
+
+                                            <small class="text-muted">
+                                                Simple and elegant
+                                            </small>
+
+                                        </div>
+
+                                    </label>
+
+                                </div>
+
+
+                                <!-- ATS -->
+
+                                <div class="col-md-6">
+
+                                    <input
+                                        type="radio"
+                                        class="btn-check"
+                                        name="templateName"
+                                        id="ats"
+                                        value="ats">
+
+                                    <label
+                                        class="template-card"
+                                        for="ats">
+
+                                        <div class="template-preview ats-preview">
+
+                                            <div class="preview-title">
+                                                YOUR NAME
+                                            </div>
+
+                                            <div class="preview-line"></div>
+
+                                            <div class="preview-block"></div>
+                                            <div class="preview-block short"></div>
+
+                                        </div>
+
+                                        <div class="mt-3">
+
+                                            <h5 class="mb-1">
+                                                ATS-Friendly
+                                            </h5>
+
+                                            <small class="text-muted">
+                                                Optimized for job systems
+                                            </small>
+
+                                        </div>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Submit -->
+
+                        <div class="d-flex justify-content-end gap-2 mt-5">
+
+                            <a href="dashboard.html"
+                               class="btn btn-outline-secondary">
+
+                                Cancel
+
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary px-4">
+
+                                Continue
+                                <i class="bi bi-arrow-right"></i>
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<style>
+
+    .template-card {
+        display: block;
+        padding: 15px;
+        border: 2px solid #dee2e6;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.2s ease;
+        height: 100%;
+    }
+
+    .template-card:hover {
+        border-color: #0d6efd;
+        transform: translateY(-2px);
+    }
+
+    .btn-check:checked + .template-card {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+    }
+
+    .template-preview {
+        height: 180px;
+        padding: 18px;
+        background: white;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .preview-title {
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .preview-line {
+        height: 2px;
+        background: #212529;
+        margin-bottom: 15px;
+    }
+
+    .preview-block {
+        height: 7px;
+        width: 90%;
+        background: #dee2e6;
+        margin-bottom: 8px;
+    }
+
+    .preview-block.short {
+        width: 60%;
+    }
+
+    .modern-preview {
+        border-left: 5px solid #0d6efd;
+    }
+
+    .professional-preview {
+        border-top: 5px solid #212529;
+    }
+
+    .minimal-preview {
+        border: 1px solid #dee2e6;
+    }
+
+    .ats-preview {
+        border-left: 3px solid #198754;
+    }
+
+</style>
+
+</body>
+
+</html>

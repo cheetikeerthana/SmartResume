@@ -713,6 +713,261 @@
             summary ||
             "Your professional summary will appear here.";
 
+        const readEntryValue = (entry, selector) => {
+            const field = entry.querySelector(selector);
+            return field ? field.value.trim() : "";
+        };
+
+        const renderSection = (previewId, placeholder, entries) => {
+            const preview = document.getElementById(previewId);
+            preview.replaceChildren();
+
+            if (entries.length === 0) {
+                preview.textContent = placeholder;
+                preview.classList.add("text-muted");
+                return;
+            }
+
+            preview.classList.remove("text-muted");
+
+            entries.forEach(({ title, details }) => {
+                const item = document.createElement("div");
+                item.className = "mb-2";
+
+                const heading = document.createElement("div");
+                heading.className = "fw-semibold";
+                heading.textContent = title;
+                item.appendChild(heading);
+
+                const detailText = details
+                    .filter((detail) => detail.value)
+                    .map((detail) => `${detail.label}: ${detail.value}`)
+                    .join(" • ");
+
+                if (detailText) {
+                    const detail = document.createElement("div");
+                    detail.className = "text-muted";
+                    detail.textContent = detailText;
+                    item.appendChild(detail);
+                }
+
+                preview.appendChild(item);
+            });
+        };
+
+        const educationEntries = Array.from(
+            document.querySelectorAll(".education-entry")
+        ).map((entry) => {
+            const institution =
+                readEntryValue(entry, ".education-institution");
+            const degree =
+                readEntryValue(entry, ".education-degree");
+            const startYear =
+                readEntryValue(entry, ".education-start");
+            const endYear =
+                readEntryValue(entry, ".education-end");
+
+            return {
+                title: [degree, institution].filter(Boolean).join(" — "),
+                details: [
+                    {
+                        label: "Field of study",
+                        value: readEntryValue(entry, ".education-field")
+                    },
+                    {
+                        label: "Years",
+                        value: [startYear, endYear]
+                            .filter(Boolean)
+                            .join(" – ")
+                    },
+                    {
+                        label: "Grade",
+                        value: readEntryValue(entry, ".education-grade")
+                    },
+                    {
+                        label: "Description",
+                        value: readEntryValue(
+                            entry,
+                            ".education-description"
+                        )
+                    }
+                ]
+            };
+        }).filter((entry) =>
+            entry.title
+            && entry.title.includes(" — ")
+        );
+
+        renderSection(
+            "previewEducation",
+            "Add your education details.",
+            educationEntries
+        );
+
+        const skillEntries = Array.from(
+            document.querySelectorAll(".skill-entry")
+        ).map((entry) => ({
+            title: readEntryValue(entry, ".skill-name"),
+            details: [
+                {
+                    label: "Category",
+                    value: readEntryValue(entry, ".skill-category")
+                },
+                {
+                    label: "Proficiency",
+                    value: readEntryValue(entry, ".skill-proficiency")
+                }
+            ]
+        })).filter((entry) => entry.title);
+
+        renderSection("previewSkills", "Add your skills.", skillEntries);
+
+        const projectEntries = Array.from(
+            document.querySelectorAll(".project-entry")
+        ).map((entry) => ({
+            title: readEntryValue(entry, ".project-title"),
+            details: [
+                {
+                    label: "Description",
+                    value: readEntryValue(entry, ".project-description")
+                },
+                {
+                    label: "Technologies",
+                    value: readEntryValue(entry, ".project-technologies")
+                },
+                {
+                    label: "GitHub",
+                    value: readEntryValue(entry, ".project-github")
+                },
+                {
+                    label: "Live",
+                    value: readEntryValue(entry, ".project-live")
+                }
+            ]
+        })).filter((entry) => entry.title);
+
+        renderSection(
+            "previewProjects",
+            "Add your projects.",
+            projectEntries
+        );
+
+        const experienceEntries = Array.from(
+            document.querySelectorAll(".experience-entry")
+        ).map((entry) => {
+            const company =
+                readEntryValue(entry, ".experience-company");
+            const jobTitle =
+                readEntryValue(entry, ".experience-job-title");
+            const startDate =
+                readEntryValue(entry, ".experience-start-date");
+            const endDate =
+                readEntryValue(entry, ".experience-end-date");
+
+            return {
+                title: [jobTitle, company].filter(Boolean).join(" — ")
+                    || jobTitle
+                    || company,
+                details: [
+                    {
+                        label: "Location",
+                        value: readEntryValue(entry, ".experience-location")
+                    },
+                    {
+                        label: "Dates",
+                        value: [startDate, endDate]
+                            .filter(Boolean)
+                            .join(" – ")
+                    },
+                    {
+                        label: "Description",
+                        value: readEntryValue(
+                            entry,
+                            ".experience-description"
+                        )
+                    }
+                ]
+            };
+        }).filter((entry) => entry.title);
+
+        renderSection(
+            "previewExperience",
+            "Add your experience.",
+            experienceEntries
+        );
+
+        const certificationEntries = Array.from(
+            document.querySelectorAll(".certification-entry")
+        ).map((entry) => ({
+            title: readEntryValue(entry, ".certification-name"),
+            details: [
+                {
+                    label: "Organization",
+                    value: readEntryValue(
+                        entry,
+                        ".certification-organization"
+                    )
+                },
+                {
+                    label: "Issue date",
+                    value: readEntryValue(entry, ".certification-date")
+                },
+                {
+                    label: "Credential",
+                    value: readEntryValue(entry, ".certification-url")
+                }
+            ]
+        })).filter((entry) => entry.title);
+
+        renderSection(
+            "previewCertifications",
+            "Add your certifications.",
+            certificationEntries
+        );
+
+        const achievementEntries = Array.from(
+            document.querySelectorAll(".achievement-entry")
+        ).map((entry) => ({
+            title: readEntryValue(entry, ".achievement-title"),
+            details: [
+                {
+                    label: "Date",
+                    value: readEntryValue(entry, ".achievement-date")
+                },
+                {
+                    label: "Description",
+                    value: readEntryValue(
+                        entry,
+                        ".achievement-description"
+                    )
+                }
+            ]
+        })).filter((entry) => entry.title);
+
+        renderSection(
+            "previewAchievements",
+            "Add your achievements.",
+            achievementEntries
+        );
+
+        const languageEntries = Array.from(
+            document.querySelectorAll(".language-entry")
+        ).map((entry) => ({
+            title: readEntryValue(entry, ".language-name"),
+            details: [
+                {
+                    label: "Proficiency",
+                    value: readEntryValue(entry, ".language-proficiency")
+                }
+            ]
+        })).filter((entry) => entry.title);
+
+        renderSection(
+            "previewLanguages",
+            "Add your languages.",
+            languageEntries
+        );
+
     }
 
 
@@ -953,7 +1208,7 @@
             document.createElement("div");
 
         div.className =
-            "border rounded p-3 mb-3";
+            "border rounded p-3 mb-3 project-entry";
 
         div.innerHTML = `
 
@@ -967,7 +1222,7 @@
 
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control project-title"
                         placeholder="Project name">
 
                 </div>
@@ -979,7 +1234,7 @@
                     </label>
 
                     <textarea
-                        class="form-control"
+                        class="form-control project-description"
                         rows="3"
                         placeholder="Describe your project">
                     </textarea>
@@ -994,7 +1249,7 @@
 
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control project-technologies"
                         placeholder="Java, MySQL, HTML, CSS">
 
                 </div>
@@ -1007,7 +1262,7 @@
 
                     <input
                         type="url"
-                        class="form-control"
+                        class="form-control project-github"
                         placeholder="https://github.com/...">
 
                 </div>
@@ -1020,7 +1275,7 @@
 
                     <input
                         type="url"
-                        class="form-control"
+                        class="form-control project-live"
                         placeholder="https://...">
 
                 </div>
@@ -1030,7 +1285,7 @@
                     <button
                         type="button"
                         class="btn btn-outline-danger btn-sm"
-                        onclick="this.closest('.border').remove()">
+                        onclick="this.closest('.project-entry').remove()">
 
                         <i class="bi bi-trash"></i>
                         Remove
@@ -1057,7 +1312,7 @@
             document.createElement("div");
 
         div.className =
-            "border rounded p-3 mb-3";
+            "border rounded p-3 mb-3 experience-entry";
 
         div.innerHTML = `
 
@@ -1071,7 +1326,7 @@
 
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control experience-company"
                         placeholder="Company name">
 
                 </div>
@@ -1084,7 +1339,7 @@
 
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control experience-job-title"
                         placeholder="Software Developer Intern">
 
                 </div>
@@ -1097,7 +1352,7 @@
 
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control experience-location"
                         placeholder="Hyderabad">
 
                 </div>
@@ -1110,7 +1365,7 @@
 
                     <input
                         type="date"
-                        class="form-control">
+                        class="form-control experience-start-date">
 
                 </div>
 
@@ -1122,7 +1377,7 @@
 
                     <input
                         type="date"
-                        class="form-control">
+                        class="form-control experience-end-date">
 
                 </div>
 
@@ -1133,7 +1388,7 @@
                     </label>
 
                     <textarea
-                        class="form-control"
+                        class="form-control experience-description"
                         rows="3"
                         placeholder="Describe your responsibilities and achievements">
                     </textarea>
@@ -1145,7 +1400,7 @@
                     <button
                         type="button"
                         class="btn btn-outline-danger btn-sm"
-                        onclick="this.closest('.border').remove()">
+                        onclick="this.closest('.experience-entry').remove()">
 
                         <i class="bi bi-trash"></i>
                         Remove
@@ -1172,7 +1427,7 @@
             document.createElement("div");
 
         div.className =
-            "border rounded p-3 mb-3";
+            "border rounded p-3 mb-3 certification-entry";
 
         div.innerHTML = `
 
@@ -1186,7 +1441,7 @@
 
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control certification-name"
                         placeholder="Certification name">
 
                 </div>
@@ -1199,7 +1454,7 @@
 
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control certification-organization"
                         placeholder="Google / Microsoft / AWS">
 
                 </div>
@@ -1212,7 +1467,7 @@
 
                     <input
                         type="date"
-                        class="form-control">
+                        class="form-control certification-date">
 
                 </div>
 
@@ -1224,7 +1479,7 @@
 
                     <input
                         type="url"
-                        class="form-control"
+                        class="form-control certification-url"
                         placeholder="Credential link">
 
                 </div>
@@ -1234,7 +1489,7 @@
                     <button
                         type="button"
                         class="btn btn-outline-danger btn-sm"
-                        onclick="this.closest('.border').remove()">
+                        onclick="this.closest('.certification-entry').remove()">
 
                         <i class="bi bi-trash"></i>
                         Remove
@@ -1261,7 +1516,7 @@
             document.createElement("div");
 
         div.className =
-            "border rounded p-3 mb-3";
+            "border rounded p-3 mb-3 achievement-entry";
 
         div.innerHTML = `
 
@@ -1275,7 +1530,7 @@
 
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control achievement-title"
                         placeholder="Hackathon finalist">
 
                 </div>
@@ -1287,7 +1542,7 @@
                     </label>
 
                     <textarea
-                        class="form-control"
+                        class="form-control achievement-description"
                         rows="2"
                         placeholder="Describe the achievement">
                     </textarea>
@@ -1302,7 +1557,7 @@
 
                     <input
                         type="date"
-                        class="form-control">
+                        class="form-control achievement-date">
 
                 </div>
 
@@ -1311,7 +1566,7 @@
                     <button
                         type="button"
                         class="btn btn-outline-danger btn-sm"
-                        onclick="this.closest('.border').remove()">
+                        onclick="this.closest('.achievement-entry').remove()">
 
                         <i class="bi bi-trash"></i>
                         Remove
@@ -1338,7 +1593,7 @@
             document.createElement("div");
 
         div.className =
-            "border rounded p-3 mb-3";
+            "border rounded p-3 mb-3 language-entry";
 
         div.innerHTML = `
 
@@ -1352,7 +1607,7 @@
 
                     <input
                         type="text"
-                        class="form-control"
+                        class="form-control language-name"
                         placeholder="English">
 
                 </div>
@@ -1363,7 +1618,7 @@
                         Proficiency
                     </label>
 
-                    <select class="form-select">
+                    <select class="form-select language-proficiency">
 
                         <option>Basic</option>
                         <option>Intermediate</option>
@@ -1380,7 +1635,7 @@
                     <button
                         type="button"
                         class="btn btn-outline-danger btn-sm"
-                        onclick="this.closest('.border').remove()">
+                        onclick="this.closest('.language-entry').remove()">
 
                         <i class="bi bi-trash"></i>
                         Remove
@@ -1670,6 +1925,27 @@
         }
     }
 
+
+    document.addEventListener("input", updatePreview);
+    document.addEventListener("change", updatePreview);
+
+    const sectionObserver = new MutationObserver(updatePreview);
+
+    [
+        "educationContainer",
+        "skillsContainer",
+        "projectsContainer",
+        "experienceContainer",
+        "certificationContainer",
+        "achievementContainer",
+        "languageContainer"
+    ].forEach((containerId) => {
+        const container = document.getElementById(containerId);
+        sectionObserver.observe(container, {
+            childList: true,
+            subtree: true
+        });
+    });
 
     // Add one default entry
     addEducation();

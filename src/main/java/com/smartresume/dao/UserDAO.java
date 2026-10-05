@@ -35,9 +35,10 @@ public class UserDAO {
             return statement.executeUpdate() > 0;
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+    System.err.println("ERROR in createUser(): " + e.getMessage());
+    e.printStackTrace();
+    return false;
+}
     }
 
     // Find a user by email
@@ -77,8 +78,9 @@ public class UserDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    System.err.println("ERROR in getUserByEmail(): " + e.getMessage());
+    e.printStackTrace();
+}
 
         return null;
     }
